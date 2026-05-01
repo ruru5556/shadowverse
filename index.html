@@ -326,7 +326,7 @@
 </main>
 
 <script>
-const DEFAULT_CLASSES = ["エルフ","ロイヤル","ウィッチ","ドラゴン","ナイトメア","ビショップ","ネメシス"];
+const DEFAULT_CLASSES = ["エルフ","ロイヤル","ウィッチ","ドラゴン","ネクロマンサー","ビショップ","ネメシス"];
 const STORAGE_KEY = 'sv_tracker_v1';
 const CLASS_KEY = 'sv_classes_v1';
 const TURN_KEY = 'sv_turn_v1'; // 先攻/後攻の選択状態
@@ -404,6 +404,16 @@ function deleteDeck(id) {
   decks = decks.filter(d => d.id !== id);
   delete openTab[id];
   delete selectedTurn[id];
+  save(); renderDecks();
+}
+
+function deleteRecord(deckId, index) {
+  const deck = decks.find(d => d.id === deckId);
+  if (!deck) return;
+  const h = deck.history[index];
+  if (!h) return;
+  if (h.result === 'win') deck.wins--; else deck.losses--;
+  deck.history.splice(index, 1);
   save(); renderDecks();
 }
 
@@ -519,12 +529,13 @@ function renderDecks() {
 
     const histHtml = deck.history.length === 0
       ? '<div class="no-data">対戦記録がまだありません</div>'
-      : deck.history.slice(0, 20).map(h =>
+      : deck.history.slice(0, 20).map((h, i) =>
           `<div class="hist-item">
             <span class="badge ${h.result==='win'?'badge-win':'badge-loss'}">${h.result==='win'?'勝':'負'}</span>
             <span class="badge ${h.turn==='first'?'badge-first':'badge-second'}">${h.turn==='first'?'先攻':'後攻'}</span>
             <span>${h.cls}</span>
             <span class="hist-time">${h.date} ${h.time}</span>
+            <button class="btn-del" style="font-size:13px;padding:2px 6px;margin-left:4px" onclick="deleteRecord(${deck.id},${i})" title="この記録を削除">✕</button>
           </div>`
         ).join('');
 
