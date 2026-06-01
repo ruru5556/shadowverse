@@ -9,6 +9,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SV戦績">
+<script>
+(function(){var s=localStorage.getItem('sv_theme');var t=(s==='light'||s==='dark')?s:(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=t;})();
+</script>
 <style>
 :root {
   --green: #1D9E75; --green-mid: #5DCAA5; --green-dark: #0F6E56;
@@ -29,6 +32,43 @@
   --border2: rgba(255,255,255,0.13);
   --text: #dde4f4; --text2: #7485aa; --text3: #38486a;
   --radius: 14px; --radius-sm: 8px;
+}
+:root[data-theme="light"] {
+  --green-mid: #0F6E56;
+  --red-mid: #993C1D;
+  --blue: #1D4ED8;
+  --orange: #B25A00;
+  --purple: #6D28D9;
+  --green-light: rgba(29,158,117,0.12);
+  --red-light: rgba(224,92,58,0.12);
+  --blue-light: rgba(29,78,216,0.10);
+  --orange-light: rgba(178,90,0,0.12);
+  --purple-light: rgba(109,40,217,0.11);
+  --bg: #f3f5fb;
+  --surface: rgba(255,255,255,0.92);
+  --surface2: rgba(15,23,42,0.04);
+  --surface3: rgba(15,23,42,0.08);
+  --border: rgba(15,23,42,0.08);
+  --border2: rgba(15,23,42,0.14);
+  --text: #1a1f2e; --text2: #5a6478; --text3: #a8b0c2;
+}
+:root[data-theme="light"] body {
+  background-image:
+    radial-gradient(ellipse at 12% 38%, rgba(29,158,117,0.08) 0%, transparent 52%),
+    radial-gradient(ellipse at 88% 12%, rgba(29,78,216,0.07) 0%, transparent 48%),
+    radial-gradient(ellipse at 55% 88%, rgba(109,40,217,0.07) 0%, transparent 48%);
+}
+:root[data-theme="light"] header {
+  background: rgba(255,255,255,0.85);
+}
+:root[data-theme="light"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+:root[data-theme="light"] .deck-card {
+  box-shadow: 0 4px 18px rgba(15,23,42,0.06), 0 0 30px rgba(29,158,117,0.04);
+}
+:root[data-theme="light"] .deck-card:hover {
+  box-shadow: 0 6px 24px rgba(15,23,42,0.09), 0 0 40px rgba(29,158,117,0.06);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -63,6 +103,16 @@ header {
 }
 .streak-win { background: rgba(29,158,117,0.2); color: var(--green-mid); border: 1px solid rgba(29,158,117,0.35); }
 .streak-loss { background: rgba(224,92,58,0.2); color: var(--red-mid); border: 1px solid rgba(224,92,58,0.35); }
+.theme-toggle {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); border-radius: 999px;
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 15px; font-family: inherit;
+  transition: all .15s; padding: 0; line-height: 1;
+}
+.theme-toggle:hover { background: var(--surface3); transform: rotate(15deg); }
+.theme-toggle:active { transform: scale(0.92); }
 /* Layout */
 main { max-width: 720px; margin: 0 auto; padding: 1.25rem 1rem; }
 /* Toolbar */
@@ -302,6 +352,7 @@ tr:last-child td { border-bottom: none; }
       <div class="header-sub">デッキ別・クラス別・先後攻の勝率を管理</div>
     </div>
     <div class="header-streak" id="headerStreak"></div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="テーマ切替">🌙</button>
   </div>
 </header>
 
@@ -362,6 +413,20 @@ const STORAGE_KEY = 'sv_tracker_v1';
 const CLASS_KEY = 'sv_classes_v1';
 
 let decks = [], classes = [], openTab = {}, selectedTurn = {}, deferredPrompt = null, currentPeriod = 'all';
+
+// Theme
+function syncThemeUI() {
+  const t = document.documentElement.dataset.theme || 'dark';
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = t === 'light' ? '🌙' : '☀️';
+}
+function toggleTheme() {
+  const cur = document.documentElement.dataset.theme || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('sv_theme', next);
+  syncThemeUI();
+}
 
 // Load / Save
 function load() {
@@ -526,7 +591,7 @@ function makeGraph(deck) {
         <stop offset="100%" stop-color="#1D9E75" stop-opacity=".02"/>
       </linearGradient></defs>
       <line x1="${P}" y1="${ty(50).toFixed(1)}" x2="${W-P}" y2="${ty(50).toFixed(1)}"
-        stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+        stroke-width="1" stroke-dasharray="4,4" style="stroke:var(--border2)"/>
       <path d="${area}" fill="url(#gg${did})"/>
       <path d="${line}" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="${tx(n-1).toFixed(1)}" cy="${ty(data[n-1]).toFixed(1)}" r="3.5" fill="#1D9E75"/>
@@ -714,7 +779,7 @@ document.getElementById('installBtn').addEventListener('click', async () => {
 window.addEventListener('appinstalled', () => { document.getElementById('installBanner').style.display = 'none'; });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
 
-load(); renderClasses(); renderDecks();
+load(); syncThemeUI(); renderClasses(); renderDecks();
 </script>
 </body>
 </html>
