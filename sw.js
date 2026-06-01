@@ -1,5 +1,5 @@
-const CACHE = 'sv-tracker-v1';
-const FILES = ['/', '/index.html', '/manifest.json'];
+const CACHE = 'sv-tracker-v2';
+const FILES = ['/shadowverse/', '/shadowverse/index.html', '/shadowverse/manifest.json'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
