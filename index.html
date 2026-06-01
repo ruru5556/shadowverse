@@ -747,6 +747,7 @@ const STORAGE_KEY = 'sv_tracker_v1';
 const CLASS_KEY = 'sv_classes_v1';
 const ARCH_KEY = 'sv_archetypes_v1';
 const ACH_KEY = 'sv_achievements_v1';
+const LAST_KEY = 'sv_last_v1';
 const STREAK_MILESTONES = [5, 10, 15, 20, 25, 30, 50];
 
 let decks = [], classes = [], archetypes = {}, unlockedAch = {}, openTab = {}, selectedTurn = {},
@@ -772,6 +773,7 @@ function load() {
   try { const r = localStorage.getItem(CLASS_KEY); classes = r ? JSON.parse(r) : [...DEFAULT_CLASSES]; } catch(e) { classes = [...DEFAULT_CLASSES]; }
   try { const r = localStorage.getItem(ARCH_KEY); archetypes = r ? JSON.parse(r) : {...DEFAULT_ARCHETYPES}; } catch(e) { archetypes = {...DEFAULT_ARCHETYPES}; }
   try { const r = localStorage.getItem(ACH_KEY); unlockedAch = r ? JSON.parse(r) : {}; } catch(e) { unlockedAch = {}; }
+  try { const r = localStorage.getItem(LAST_KEY); if (r) lastChoice = JSON.parse(r); } catch(e) { lastChoice = {}; }
   migrate();
 }
 function save() {
@@ -779,6 +781,7 @@ function save() {
   localStorage.setItem(CLASS_KEY, JSON.stringify(classes));
   localStorage.setItem(ARCH_KEY, JSON.stringify(archetypes));
   localStorage.setItem(ACH_KEY, JSON.stringify(unlockedAch));
+  localStorage.setItem(LAST_KEY, JSON.stringify(lastChoice));
 }
 function migrate() {
   let changed = false;
@@ -1012,6 +1015,7 @@ function record(id, result, useLast) {
   });
   lastChoice[id] = { cls, sub, rate, turn };
   if (!useLast) {
+    delete selectedTurn[id]; // 詳細モードでは記録後に先後攻をリセット
     const m = document.getElementById('memo-'+id); if (m) m.value = '';
   }
   save();
@@ -1449,11 +1453,11 @@ function renderDecks() {
       : tab==='trend' ? `<div class="tab-content">${makeTrend(deck)}</div>`
       : tab==='history' ? `<div class="tab-content">${histHtml}</div>` : '';
 
-    // Build options with last selection pre-selected
-    const opts = classes.length ? classes.map(c=>`<option value="${c}" ${c===last.cls?'selected':''}>${c}</option>`).join('') : '<option value="－">－</option>';
-    const initCls = last.cls && classes.includes(last.cls) ? last.cls : (classes[0] || null);
+    // 詳細モード: レートのみ継承（他はリセット）。コンパクトモードは last をフルに使う。
+    const opts = classes.length ? classes.map(c=>`<option value="${c}">${c}</option>`).join('') : '<option value="－">－</option>';
+    const initCls = classes[0] || null;
     const initArchs = initCls ? getArchetypes(initCls) : [];
-    const archOptsInit = '<option value="">型（任意）</option>' + initArchs.map(a => `<option value="${a}" ${a===last.sub?'selected':''}>${a}</option>`).join('');
+    const archOptsInit = '<option value="">型（任意）</option>' + initArchs.map(a => `<option value="${a}">${a}</option>`).join('');
     const rateOpts = '<option value="">レート（任意）</option>' + RATES.map(r=>`<option value="${r}" ${r===last.rate?'selected':''}>${r}</option>`).join('');
 
     // Compact form vs Full form
@@ -1474,7 +1478,7 @@ function renderDecks() {
           <button class="btn-loss-big" onclick="record(${deck.id},'loss',true)">負け ✗</button>
         </div>`;
     } else {
-      const initTurn = turn || last.turn || null;
+      const initTurn = turn;
       recordHtml = `
         <div class="record-row">
           <div class="turn-toggle">
@@ -1491,9 +1495,6 @@ function renderDecks() {
           <button class="btn-loss" onclick="record(${deck.id},'loss',false)">負け ✗</button>
         </div>`;
     }
-    // initialize selectedTurn from last if not set
-    if (!selectedTurn[deck.id] && last.turn) selectedTurn[deck.id] = last.turn;
-
     return `<div class="deck-card ${deck.pinned?'pinned':''}">
       <div class="deck-header">
         <button class="pin-btn ${deck.pinned?'pinned':''}" onclick="togglePin(${deck.id})" title="${deck.pinned?'ピン解除':'ピン留め'}">${deck.pinned?'★':'☆'}</button>
