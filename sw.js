@@ -1,4 +1,4 @@
-const CACHE = 'sv-tracker-v4';
+const CACHE = 'sv-tracker-v5';
 const FILES = ['/shadowverse/', '/shadowverse/index.html', '/shadowverse/manifest.json'];
 
 self.addEventListener('install', e => {

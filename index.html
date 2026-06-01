@@ -58,18 +58,12 @@
     radial-gradient(ellipse at 88% 12%, rgba(29,78,216,0.07) 0%, transparent 48%),
     radial-gradient(ellipse at 55% 88%, rgba(109,40,217,0.07) 0%, transparent 48%);
 }
-:root[data-theme="light"] header {
-  background: rgba(255,255,255,0.85);
-}
+:root[data-theme="light"] header { background: rgba(255,255,255,0.85); }
 :root[data-theme="light"] select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
 }
-:root[data-theme="light"] .deck-card {
-  box-shadow: 0 4px 18px rgba(15,23,42,0.06), 0 0 30px rgba(29,158,117,0.04);
-}
-:root[data-theme="light"] .deck-card:hover {
-  box-shadow: 0 6px 24px rgba(15,23,42,0.09), 0 0 40px rgba(29,158,117,0.06);
-}
+:root[data-theme="light"] .deck-card { box-shadow: 0 4px 18px rgba(15,23,42,0.06), 0 0 30px rgba(29,158,117,0.04); }
+:root[data-theme="light"] .deck-card:hover { box-shadow: 0 6px 24px rgba(15,23,42,0.09), 0 0 40px rgba(29,158,117,0.06); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: -apple-system,'Hiragino Sans','Noto Sans JP',sans-serif;
@@ -81,7 +75,6 @@ body {
   background-attachment: fixed;
   color: var(--text); min-height: 100vh; padding-bottom: 4rem;
 }
-/* Header */
 header {
   background: rgba(5,8,16,0.88);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
@@ -97,10 +90,7 @@ header {
 }
 .header-title { font-size: 15px; font-weight: 700; letter-spacing: .02em; }
 .header-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
-.header-streak {
-  margin-left: auto; font-size: 13px; font-weight: 700;
-  padding: 4px 12px; border-radius: 999px; white-space: nowrap; transition: all .3s;
-}
+.header-streak { margin-left: auto; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; transition: all .3s; }
 .streak-win { background: rgba(29,158,117,0.2); color: var(--green-mid); border: 1px solid rgba(29,158,117,0.35); }
 .streak-loss { background: rgba(224,92,58,0.2); color: var(--red-mid); border: 1px solid rgba(224,92,58,0.35); }
 .theme-toggle {
@@ -113,9 +103,7 @@ header {
 }
 .theme-toggle:hover { background: var(--surface3); transform: rotate(15deg); }
 .theme-toggle:active { transform: scale(0.92); }
-/* Layout */
 main { max-width: 720px; margin: 0 auto; padding: 1.25rem 1rem; }
-/* Toolbar */
 .toolbar { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center; }
 .filter-btn {
   background: var(--surface2); border: 1px solid var(--border); color: var(--text2);
@@ -132,7 +120,6 @@ main { max-width: 720px; margin: 0 auto; padding: 1.25rem 1rem; }
   display: inline-flex; align-items: center; gap: 5px;
 }
 .btn-tool:hover { background: var(--surface3); color: var(--text); }
-/* Overall stats */
 .overall-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1.25rem; }
 .metric {
   background: var(--surface); border: 1px solid var(--border); border-top-color: var(--border2);
@@ -141,25 +128,24 @@ main { max-width: 720px; margin: 0 auto; padding: 1.25rem 1rem; }
 }
 .metric-val { font-size: 22px; font-weight: 700; }
 .metric-lbl { font-size: 11px; color: var(--text2); margin-top: 4px; letter-spacing: .03em; }
-/* Section label */
 .section-label {
   font-size: 10px; color: var(--text3); letter-spacing: .1em;
   text-transform: uppercase; margin-bottom: 8px; margin-top: 1.5rem; font-weight: 600;
 }
-/* Forms */
 .add-row { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-input[type="text"] {
+input[type="text"], input[type="number"] {
   flex: 1; background: var(--surface); border: 1px solid var(--border2);
   border-radius: var(--radius-sm); padding: 0 14px; height: 40px;
   font-size: 14px; color: var(--text); outline: none;
   transition: border-color .2s, box-shadow .2s; font-family: inherit;
 }
-input[type="text"]:focus { border-color: var(--green-mid); box-shadow: 0 0 0 2px rgba(29,158,117,0.15); }
-input[type="text"]::placeholder { color: var(--text3); }
+input[type="text"]:focus, input[type="number"]:focus { border-color: var(--green-mid); box-shadow: 0 0 0 2px rgba(29,158,117,0.15); }
+input[type="text"]::placeholder, input[type="number"]::placeholder { color: var(--text3); }
 input.memo-input {
   height: 34px; font-size: 12px; background: var(--surface2); border-color: var(--border);
+  padding: 0 10px;
 }
-input.memo-input::placeholder { color: var(--text3); }
+select.rate-select { height: 34px; font-size: 12px; min-width: 100px; flex: 0 0 auto; }
 select {
   background: var(--surface); border: 1px solid var(--border2);
   border-radius: var(--radius-sm); padding: 0 28px 0 10px; height: 38px;
@@ -184,10 +170,7 @@ button.primary:active { transform: scale(.98); }
   transition: all .15s; font-family: inherit;
 }
 .btn-secondary:hover { background: var(--surface3); color: var(--text); }
-/* Turn toggle */
-.turn-toggle {
-  display: flex; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border2);
-}
+.turn-toggle { display: flex; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border2); }
 .turn-btn {
   flex: 1; background: var(--surface2); border: none;
   padding: 7px 14px; font-size: 13px; font-weight: 600;
@@ -197,7 +180,6 @@ button.primary:active { transform: scale(.98); }
 .turn-btn:first-child { border-right: 1px solid var(--border2); }
 .turn-btn.active-first { background: var(--blue-light); color: var(--blue); }
 .turn-btn.active-second { background: var(--orange-light); color: var(--orange); }
-/* Deck card */
 .deck-card {
   background: var(--surface); border: 1px solid var(--border); border-top-color: var(--border2);
   border-radius: var(--radius); padding: 1.125rem 1.25rem; margin-bottom: 10px;
@@ -217,7 +199,6 @@ button.primary:active { transform: scale(.98); }
 .deck-nums { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .stat-num { font-size: 20px; font-weight: 700; }
 .stat-lbl { font-size: 11px; color: var(--text2); }
-/* Win bar */
 .win-bar-wrap { height: 5px; background: var(--surface2); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
 .win-bar {
   height: 100%; border-radius: 999px;
@@ -225,7 +206,6 @@ button.primary:active { transform: scale(.98); }
   transition: width .5s cubic-bezier(.4,0,.2,1);
   box-shadow: 0 0 8px rgba(29,158,117,0.5);
 }
-/* Turn stats */
 .turn-stats { display: flex; gap: 8px; margin-bottom: 10px; }
 .turn-stat { flex: 1; border-radius: var(--radius-sm); padding: 7px 10px; font-size: 12px; }
 .turn-stat.first { background: var(--blue-light); }
@@ -238,7 +218,6 @@ button.primary:active { transform: scale(.98); }
 .turn-stat.first .turn-stat-rate { color: var(--blue); }
 .turn-stat.second .turn-stat-rate { color: var(--orange); }
 .turn-stat-detail { font-size: 11px; color: var(--text2); }
-/* Record area */
 .record-area { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
 .record-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .btn-win {
@@ -257,8 +236,7 @@ button.primary:active { transform: scale(.98); }
 }
 .btn-loss:hover { background: rgba(224,92,58,0.25); box-shadow: 0 0 14px rgba(224,92,58,0.25); }
 .btn-loss:active { transform: scale(.97); }
-/* Tabs */
-.tabs { display: flex; margin-top: 12px; border-bottom: 1px solid var(--border); }
+.tabs { display: flex; margin-top: 12px; border-bottom: 1px solid var(--border); overflow-x: auto; }
 .tab {
   background: none; border: none; font-size: 12px; color: var(--text2);
   cursor: pointer; padding: 7px 13px; border-bottom: 2px solid transparent;
@@ -266,7 +244,6 @@ button.primary:active { transform: scale(.98); }
 }
 .tab.active { color: var(--text); border-bottom-color: var(--green-mid); font-weight: 700; }
 .tab-content { padding-top: 10px; }
-/* Table */
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th {
   text-align: left; color: var(--text3); font-weight: 600;
@@ -281,14 +258,13 @@ tr:last-child td { border-bottom: none; }
 .mini-bar { height: 100%; border-radius: 999px; background: var(--green); }
 .rate-cell { display: flex; align-items: center; justify-content: center; gap: 4px; }
 .rate-val { font-weight: 700; min-width: 32px; text-align: right; font-size: 12px; }
-/* Badges */
 .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; display: inline-block; white-space: nowrap; }
 .badge-win { background: var(--green-light); color: var(--green-mid); }
 .badge-loss { background: var(--red-light); color: var(--red-mid); }
 .badge-first { background: var(--blue-light); color: var(--blue); }
 .badge-second { background: var(--orange-light); color: var(--orange); }
 .badge-rank { background: var(--purple-light); color: var(--purple); }
-/* History */
+.badge-arch { background: var(--surface3); color: var(--text2); font-weight: 600; }
 .hist-item {
   display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
   padding: 6px 0; border-bottom: 1px solid var(--border);
@@ -297,11 +273,37 @@ tr:last-child td { border-bottom: none; }
 .hist-item:last-child { border-bottom: none; }
 .hist-memo { font-size: 12px; color: var(--text3); width: 100%; padding-left: 2px; }
 .hist-time { margin-left: auto; font-size: 11px; color: var(--text3); white-space: nowrap; }
-/* Graph */
-.graph-wrap { position: relative; margin-top: 4px; }
+
+/* === Trend tab (donut + line + recent) === */
+.trend-wrap { display: flex; flex-direction: column; gap: 14px; }
+.trend-top { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.donut-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  flex-shrink: 0;
+}
+.donut-wrap svg { display: block; }
+.donut-stats {
+  display: flex; gap: 6px; align-items: baseline;
+  font-size: 12px; font-weight: 700;
+}
+.trend-line { flex: 1; min-width: 200px; }
+.graph-wrap { position: relative; }
 .graph-wrap svg { display: block; width: 100%; overflow: visible; }
-.graph-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 4px; }
-/* Class management */
+.graph-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); margin-top: 6px; }
+.recent-strip { background: var(--surface2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.recent-label { font-size: 10px; color: var(--text3); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+.recent-dots { display: flex; gap: 4px; flex-wrap: wrap; }
+.recent-dot {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.recent-dot.win { background: var(--green-light); color: var(--green-mid); border: 1px solid rgba(29,158,117,0.3); }
+.recent-dot.loss { background: var(--red-light); color: var(--red-mid); border: 1px solid rgba(224,92,58,0.3); }
+.trend-section-label { font-size: 10px; color: var(--text3); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+.trend-section { display: flex; flex-direction: column; }
+
+/* Class & archetype management */
 .class-mgmt {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.5rem;
@@ -318,9 +320,32 @@ tr:last-child td { border-bottom: none; }
   font-size: 13px; padding: 0 0 0 2px; line-height: 1; font-family: inherit; transition: color .15s;
 }
 .class-tag-del:hover { color: var(--red); }
-.class-add-row { display: flex; gap: 8px; }
+.class-add-row { display: flex; gap: 8px; margin-bottom: 12px; }
 .class-add-row input { height: 36px; font-size: 13px; }
-/* Install banner */
+.arch-mgmt {
+  border-top: 1px dashed var(--border2);
+  padding-top: 12px; margin-top: 4px;
+}
+.arch-mgmt-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.arch-mgmt-label { font-size: 11px; color: var(--text3); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.arch-mgmt-head select { height: 30px; font-size: 12px; min-width: 110px; }
+.arch-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; min-height: 24px; }
+.arch-tag {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--purple-light); border: 1px solid rgba(167,139,250,0.3);
+  color: var(--purple); border-radius: 999px; padding: 3px 8px 3px 10px;
+  font-size: 12px; font-weight: 600;
+}
+.arch-tag-empty { font-size: 12px; color: var(--text3); padding: 4px 0; }
+.arch-tag-del {
+  background: none; border: none; color: var(--purple); opacity: 0.6;
+  cursor: pointer; font-size: 12px; padding: 0 0 0 2px; line-height: 1; font-family: inherit;
+}
+.arch-tag-del:hover { opacity: 1; }
+.arch-add-row { display: flex; gap: 6px; }
+.arch-add-row input { height: 30px; font-size: 12px; }
+.arch-add-row button { height: 30px; padding: 0 10px; font-size: 12px; }
+
 .install-banner {
   background: var(--green-light); border: 1px solid rgba(29,158,117,0.3);
   border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 1.25rem;
@@ -331,7 +356,6 @@ tr:last-child td { border-bottom: none; }
   padding: 5px 12px; font-size: 12px; font-weight: 700;
   cursor: pointer; white-space: nowrap; margin-left: auto; font-family: inherit;
 }
-/* Empty / no-data */
 .empty-state { text-align: center; padding: 3rem 1rem; color: var(--text2); font-size: 14px; }
 .empty-icon { font-size: 40px; margin-bottom: 1rem; }
 .no-data { font-size: 13px; color: var(--text2); padding: 8px 0; }
@@ -340,6 +364,8 @@ tr:last-child td { border-bottom: none; }
   .deck-nums { gap: 12px; }
   .turn-btn { padding: 7px 10px; font-size: 12px; }
   .tab { padding: 6px 10px; font-size: 11px; }
+  .trend-top { justify-content: center; }
+  .trend-line { width: 100%; }
 }
 </style>
 </head>
@@ -387,12 +413,23 @@ tr:last-child td { border-bottom: none; }
     </div>
   </div>
 
-  <div class="section-label">相手クラスの管理</div>
+  <div class="section-label">相手クラスと型の管理</div>
   <div class="class-mgmt">
     <div class="class-tags" id="classTags"></div>
     <div class="class-add-row">
       <input type="text" id="classInput" placeholder="クラス名を入力（例：ネメシス）" maxlength="20">
-      <button class="btn-secondary" onclick="addClass()">＋ 追加</button>
+      <button class="btn-secondary" onclick="addClass()">＋ クラス追加</button>
+    </div>
+    <div class="arch-mgmt">
+      <div class="arch-mgmt-head">
+        <span class="arch-mgmt-label">型の管理</span>
+        <select id="archClassSelect" onchange="renderArchMgmt()"></select>
+      </div>
+      <div class="arch-tags" id="archTags"></div>
+      <div class="arch-add-row">
+        <input type="text" id="archInput" placeholder="型名（例：破壊、AF、進化）" maxlength="20">
+        <button class="btn-secondary" onclick="addArchetype()">＋ 型追加</button>
+      </div>
     </div>
   </div>
 
@@ -407,12 +444,22 @@ tr:last-child td { border-bottom: none; }
 </main>
 
 <script>
-const DEFAULT_CLASSES = ["エルフ","ロイヤル","ウィッチ","ドラゴン","ネクロマンサー","ビショップ","ネメシス"];
-const RANKS = ["","ブロンズ","シルバー","ゴールド","プラチナ","ダイヤ","マスター","グランドマスター"];
+const DEFAULT_CLASSES = ["エルフ","ロイヤル","ウィッチ","ドラゴン","ナイトメア","ビショップ","ネメシス"];
+const RATES = ["EPIC","ULTIMATE","LEGEND","BEYOND"];
+const DEFAULT_ARCHETYPES = {
+  "エルフ": ["アグロ","OTK","コントロール"],
+  "ロイヤル": ["連携","スタンダード","リーシェナ"],
+  "ウィッチ": ["秘術","スペルブースト","コントロール"],
+  "ドラゴン": ["ランプ","バフ","フェイス"],
+  "ナイトメア": ["ラスト","リアニメイト","葬送"],
+  "ビショップ": ["ホーリーフレイム","リバイブ","コントロール"],
+  "ネメシス": ["破壊","進化","AF"]
+};
 const STORAGE_KEY = 'sv_tracker_v1';
 const CLASS_KEY = 'sv_classes_v1';
+const ARCH_KEY = 'sv_archetypes_v1';
 
-let decks = [], classes = [], openTab = {}, selectedTurn = {}, deferredPrompt = null, currentPeriod = 'all';
+let decks = [], classes = [], archetypes = {}, openTab = {}, selectedTurn = {}, deferredPrompt = null, currentPeriod = 'all';
 
 // Theme
 function syncThemeUI() {
@@ -428,14 +475,43 @@ function toggleTheme() {
   syncThemeUI();
 }
 
-// Load / Save
+// Load / Save / Migrate
 function load() {
   try { const r = localStorage.getItem(STORAGE_KEY); if (r) decks = JSON.parse(r); } catch(e) { decks = []; }
   try { const r = localStorage.getItem(CLASS_KEY); classes = r ? JSON.parse(r) : [...DEFAULT_CLASSES]; } catch(e) { classes = [...DEFAULT_CLASSES]; }
+  try { const r = localStorage.getItem(ARCH_KEY); archetypes = r ? JSON.parse(r) : {...DEFAULT_ARCHETYPES}; } catch(e) { archetypes = {...DEFAULT_ARCHETYPES}; }
+  migrate();
 }
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
   localStorage.setItem(CLASS_KEY, JSON.stringify(classes));
+  localStorage.setItem(ARCH_KEY, JSON.stringify(archetypes));
+}
+function migrate() {
+  let changed = false;
+  // ネクロマンサー → ナイトメア
+  if (classes.includes("ネクロマンサー")) {
+    classes = classes.map(c => c === "ネクロマンサー" ? (classes.includes("ナイトメア") ? null : "ナイトメア") : c).filter(Boolean);
+    changed = true;
+  }
+  if (archetypes["ネクロマンサー"] && !archetypes["ナイトメア"]) {
+    archetypes["ナイトメア"] = archetypes["ネクロマンサー"];
+    delete archetypes["ネクロマンサー"];
+    changed = true;
+  }
+  for (const deck of decks) {
+    for (const h of deck.history) {
+      if (h.cls === "ネクロマンサー") { h.cls = "ナイトメア"; changed = true; }
+    }
+  }
+  // Ensure each class has an archetype entry
+  for (const c of classes) {
+    if (!archetypes[c]) {
+      archetypes[c] = DEFAULT_ARCHETYPES[c] ? [...DEFAULT_ARCHETYPES[c]] : [];
+      changed = true;
+    }
+  }
+  if (changed) save();
 }
 
 // Period filter
@@ -485,14 +561,26 @@ function classStats(deck) {
   }
   return [...new Set([...classes,...Object.keys(map)])].filter(c=>map[c]).map(c=>({cls:c,...map[c]}));
 }
-function rankStats(deck) {
+function archetypeStats(deck) {
   const map = {};
   for (const h of filteredHistory(deck)) {
-    const r = h.rank || '未設定';
-    if (!map[r]) map[r] = {w:0,l:0};
-    h.result==='win'?map[r].w++:map[r].l++;
+    if (!h.sub) continue;
+    const key = h.cls + '|' + h.sub;
+    if (!map[key]) map[key] = {cls:h.cls,sub:h.sub,w:0,l:0,fw:0,fl:0,sw:0,sl:0};
+    h.result==='win'?map[key].w++:map[key].l++;
+    if (h.turn==='first') { h.result==='win'?map[key].fw++:map[key].fl++; }
+    else { h.result==='win'?map[key].sw++:map[key].sl++; }
   }
-  return [...RANKS.slice(1),'未設定'].filter(r=>map[r]).map(r=>({rank:r,...map[r]}));
+  return Object.values(map).sort((a,b)=> a.cls.localeCompare(b.cls,'ja') || a.sub.localeCompare(b.sub,'ja'));
+}
+function rateStats(deck) {
+  const map = {};
+  for (const h of filteredHistory(deck)) {
+    if (!h.rate) continue;
+    if (!map[h.rate]) map[h.rate] = {rate:h.rate, w:0, l:0};
+    h.result==='win'?map[h.rate].w++:map[h.rate].l++;
+  }
+  return RATES.filter(r => map[r]).map(r => map[r]);
 }
 
 // Streak
@@ -516,11 +604,34 @@ function addClass() {
   const input = document.getElementById('classInput');
   const name = input.value.trim(); if (!name) return;
   if (classes.includes(name)) { alert('同名のクラスがすでにあります'); return; }
-  classes.push(name); input.value = ''; save(); renderClasses(); renderDecks();
+  classes.push(name);
+  if (!archetypes[name]) archetypes[name] = DEFAULT_ARCHETYPES[name] ? [...DEFAULT_ARCHETYPES[name]] : [];
+  input.value = ''; save(); renderClasses(); renderArchMgmt(); renderDecks();
 }
 function deleteClass(name) {
   if (!confirm(`「${name}」を削除しますか？\n※このクラスの対戦履歴は記録に残ります`)) return;
-  classes = classes.filter(c => c !== name); save(); renderClasses(); renderDecks();
+  classes = classes.filter(c => c !== name);
+  delete archetypes[name];
+  save(); renderClasses(); renderArchMgmt(); renderDecks();
+}
+
+// Archetype management
+function getArchetypes(cls) { return archetypes[cls] || []; }
+function addArchetype() {
+  const sel = document.getElementById('archClassSelect');
+  const input = document.getElementById('archInput');
+  const cls = sel.value;
+  const name = input.value.trim();
+  if (!cls || !name) return;
+  if (!archetypes[cls]) archetypes[cls] = [];
+  if (archetypes[cls].includes(name)) { alert('同名の型がすでにあります'); return; }
+  archetypes[cls].push(name);
+  input.value = ''; save(); renderArchMgmt(); renderDecks();
+}
+function deleteArchetype(cls, name) {
+  if (!archetypes[cls]) return;
+  archetypes[cls] = archetypes[cls].filter(a => a !== name);
+  save(); renderArchMgmt(); renderDecks();
 }
 
 // Deck management
@@ -544,17 +655,25 @@ function setTurn(id, turn) {
     sb.className = 'turn-btn'+(turn==='second'?' active-second':'');
   }
 }
+function syncArchOptions(deckId) {
+  const cls = document.getElementById('cls-' + deckId).value;
+  const sel = document.getElementById('arch-' + deckId);
+  if (!sel) return;
+  const archs = getArchetypes(cls);
+  sel.innerHTML = '<option value="">型（任意）</option>' + archs.map(a => `<option value="${a}">${a}</option>`).join('');
+}
 function record(id, result) {
   const deck = decks.find(d => d.id === id); if (!deck) return;
   const turn = selectedTurn[id] || null;
   if (!turn) { alert('先攻 / 後攻を選択してください'); return; }
   const cls = document.getElementById('cls-'+id).value;
-  const rank = document.getElementById('rank-'+id).value;
+  const sub = document.getElementById('arch-'+id).value;
+  const rate = document.getElementById('rate-'+id).value;
   const memo = (document.getElementById('memo-'+id).value || '').trim();
   result==='win' ? deck.wins++ : deck.losses++;
   const now = new Date();
   deck.history.unshift({
-    result, cls, turn, rank, memo, ts: now.getTime(),
+    result, cls, sub, turn, rate, memo, ts: now.getTime(),
     date: now.toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'}),
     time: now.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})
   });
@@ -571,23 +690,54 @@ function setTab(id, tab) {
   openTab[id] = openTab[id] === tab ? null : tab; renderDecks();
 }
 
-// Graph
-function makeGraph(deck) {
+// --- Trend rendering: donut + line + recent ---
+function donutSvg(w, l, size) {
+  const total = w + l;
+  const r = 42, C = 2 * Math.PI * r;
+  if (total === 0) {
+    return `<svg viewBox="0 0 100 100" style="width:${size}px;height:${size}px">
+      <circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="12"/>
+      <text x="50" y="52" text-anchor="middle" dy="0.35em" style="font-size:14px;fill:var(--text2)">—</text>
+    </svg>`;
+  }
+  const rate = w / total;
+  const fill = C * rate;
+  return `<svg viewBox="0 0 100 100" style="width:${size}px;height:${size}px">
+    <circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="12"/>
+    <circle cx="50" cy="50" r="${r}" fill="none" stroke="#1D9E75" stroke-width="12"
+      stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${(C - fill).toFixed(2)}"
+      stroke-linecap="round" transform="rotate(-90 50 50)" style="transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)"/>
+    <text x="50" y="48" text-anchor="middle" style="font-size:22px;font-weight:800;fill:var(--text)">${Math.round(rate*100)}%</text>
+    <text x="50" y="63" text-anchor="middle" style="font-size:8px;fill:var(--text2);letter-spacing:0.1em">勝率</text>
+  </svg>`;
+}
+function donutChart(w, l) {
+  return `<div class="donut-wrap">
+    ${donutSvg(w, l, 130)}
+    <div class="donut-stats">
+      <span style="color:var(--green)">${w}勝</span>
+      <span style="color:var(--text3)">/</span>
+      <span style="color:var(--red)">${l}敗</span>
+      <span style="color:var(--text2);font-weight:600">・${w+l}試合</span>
+    </div>
+  </div>`;
+}
+function lineGraph(deck) {
   const entries = [...filteredHistory(deck)].reverse();
-  if (entries.length < 2) return '<div class="no-data">グラフ表示には2試合以上必要です</div>';
-  const pts = entries.slice(0, 50);
+  if (entries.length < 2) return '<div class="no-data">折れ線グラフには2試合以上必要です</div>';
+  const pts = entries.slice(-50);
   let w = 0;
   const data = pts.map((h, i) => { if (h.result==='win') w++; return Math.round(w/(i+1)*100); });
-  const W=400, H=72, P=4, n=data.length;
+  const W=400, H=90, P=4, n=data.length;
   const tx = i => P + i/(n-1)*(W-P*2);
   const ty = r => P + (1-r/100)*(H-P*2);
   const line = data.map((r,i) => `${i===0?'M':'L'}${tx(i).toFixed(1)},${ty(r).toFixed(1)}`).join(' ');
   const area = `${line} L${tx(n-1).toFixed(1)},${H} L${tx(0).toFixed(1)},${H} Z`;
   const did = deck.id;
   return `<div class="graph-wrap">
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="height:80px">
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="height:90px">
       <defs><linearGradient id="gg${did}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#1D9E75" stop-opacity=".35"/>
+        <stop offset="0%" stop-color="#1D9E75" stop-opacity=".4"/>
         <stop offset="100%" stop-color="#1D9E75" stop-opacity=".02"/>
       </linearGradient></defs>
       <line x1="${P}" y1="${ty(50).toFixed(1)}" x2="${W-P}" y2="${ty(50).toFixed(1)}"
@@ -596,13 +746,35 @@ function makeGraph(deck) {
       <path d="${line}" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="${tx(n-1).toFixed(1)}" cy="${ty(data[n-1]).toFixed(1)}" r="3.5" fill="#1D9E75"/>
     </svg>
-    <div class="graph-labels"><span>${pts.length}試合（最新50件）</span><span>現在の勝率 <strong>${data[n-1]}%</strong></span></div>
+    <div class="graph-labels"><span>累積勝率の推移（最大50試合）</span><span>現在 <strong style="color:var(--text)">${data[n-1]}%</strong></span></div>
+  </div>`;
+}
+function recentStrip(history) {
+  const recent = history.slice(0, 10);
+  if (!recent.length) return '';
+  return `<div class="recent-strip">
+    <div class="recent-label">直近10戦（左が最新）</div>
+    <div class="recent-dots">${recent.map(h =>
+      `<span class="recent-dot ${h.result==='win'?'win':'loss'}" title="${h.cls}${h.sub?'・'+h.sub:''} ${h.result==='win'?'勝':'負'}">${h.result==='win'?'W':'L'}</span>`
+    ).join('')}</div>
+  </div>`;
+}
+function makeTrend(deck) {
+  const fh = filteredHistory(deck);
+  const w = fh.filter(h => h.result === 'win').length;
+  const l = fh.filter(h => h.result === 'loss').length;
+  return `<div class="trend-wrap">
+    <div class="trend-top">
+      ${donutChart(w, l)}
+      <div class="trend-line"><div class="trend-section-label">累積勝率の推移</div>${lineGraph(deck)}</div>
+    </div>
+    ${recentStrip(fh)}
   </div>`;
 }
 
 // Export / Import
 function exportData() {
-  const blob = new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),decks,classes},null,2)],{type:'application/json'});
+  const blob = new Blob([JSON.stringify({version:3,exportedAt:new Date().toISOString(),decks,classes,archetypes},null,2)],{type:'application/json'});
   const url = URL.createObjectURL(blob), a = document.createElement('a');
   a.href = url; a.download = `sv-tracker-${new Date().toISOString().slice(0,10)}.json`; a.click();
   URL.revokeObjectURL(url);
@@ -617,7 +789,12 @@ function importData(e) {
       if (!confirm(`インポートしますか？\n現在のデータに追加されます（${data.decks.length}デッキ）`)) return;
       for (const d of data.decks) { if (!decks.find(x => x.id === d.id)) decks.push(d); }
       if (data.classes) for (const c of data.classes) { if (!classes.includes(c)) classes.push(c); }
-      save(); renderClasses(); renderDecks();
+      if (data.archetypes) for (const k of Object.keys(data.archetypes)) {
+        if (!archetypes[k]) archetypes[k] = [];
+        for (const a of data.archetypes[k]) if (!archetypes[k].includes(a)) archetypes[k].push(a);
+      }
+      migrate();
+      save(); renderClasses(); renderArchMgmt(); renderDecks();
     } catch { alert('インポートに失敗しました。正しいJSONファイルを選択してください。'); }
     e.target.value = '';
   };
@@ -647,6 +824,25 @@ function renderClasses() {
   if (!classes.length) { tags.innerHTML='<span style="font-size:13px;color:var(--text3)">クラスを追加してください</span>'; return; }
   tags.innerHTML = classes.map(c=>`<div class="class-tag">${c}<button class="class-tag-del" onclick="deleteClass('${c}')">✕</button></div>`).join('');
 }
+function renderArchMgmt() {
+  const sel = document.getElementById('archClassSelect');
+  if (!classes.length) {
+    sel.innerHTML = '<option value="">クラスがありません</option>';
+    document.getElementById('archTags').innerHTML = '<span class="arch-tag-empty">先にクラスを追加してください</span>';
+    return;
+  }
+  const prev = sel.value;
+  sel.innerHTML = classes.map(c => `<option value="${c}">${c}</option>`).join('');
+  if (prev && classes.includes(prev)) sel.value = prev;
+  const cls = sel.value;
+  const archs = getArchetypes(cls);
+  const tagsEl = document.getElementById('archTags');
+  if (!archs.length) {
+    tagsEl.innerHTML = '<span class="arch-tag-empty">型が未登録です（任意・追加すると記録時に選択できます）</span>';
+  } else {
+    tagsEl.innerHTML = archs.map(a => `<div class="arch-tag">${a}<button class="arch-tag-del" onclick="deleteArchetype('${cls}','${a}')">✕</button></div>`).join('');
+  }
+}
 function renderDecks() {
   updateOverall();
   const list = document.getElementById('deckList');
@@ -655,14 +851,16 @@ function renderDecks() {
     return;
   }
   const opts = classes.length ? classes.map(c=>`<option value="${c}">${c}</option>`).join('') : '<option value="－">－</option>';
-  const rankOpts = RANKS.map((r,i)=>`<option value="${r}">${i===0?'ランク（任意）':r}</option>`).join('');
+  const firstCls = classes.length ? classes[0] : null;
+  const firstArchs = firstCls ? getArchetypes(firstCls) : [];
+  const archOptsInit = '<option value="">型（任意）</option>' + firstArchs.map(a => `<option value="${a}">${a}</option>`).join('');
 
   list.innerHTML = decks.map(deck => {
     const {w,l} = deckStats(deck);
     const total=w+l, rate=winRate(w,l), barW=rate??0;
     const tab=openTab[deck.id]||null, turn=selectedTurn[deck.id]||null;
     const ts=turnStats(deck), frRate=winRate(ts.fw,ts.fl), srRate=winRate(ts.sw,ts.sl);
-    const cs=classStats(deck), rs=rankStats(deck), fh=filteredHistory(deck);
+    const cs=classStats(deck), as=archetypeStats(deck), rs=rateStats(deck), fh=filteredHistory(deck);
 
     const turnStatsHtml = (ts.fw+ts.fl+ts.sw+ts.sl>0) ? `
       <div class="turn-stats">
@@ -693,11 +891,22 @@ function renderDecks() {
             <td style="color:var(--text2)">${w+l}</td></tr>`;
         }).join('')}</tbody></table>`;
 
-    const rankHtml = !rs.length ? '<div class="no-data">ランク記録がまだありません（記録時にランクを選択してください）</div>'
-      : `<table><thead><tr><th>ランク</th><th>勝率</th><th>勝利</th><th>敗北</th><th>合計</th></tr></thead><tbody>
-        ${rs.map(({rank,w,l})=>{
+    const archHtml = !as.length ? '<div class="no-data">型の記録がまだありません（記録時に型を選択してください）</div>'
+      : `<table><thead><tr><th>クラス・型</th><th>勝率</th><th>🔵先攻</th><th>🟠後攻</th><th>合計</th></tr></thead><tbody>
+        ${as.map(({cls,sub,w,l,fw,fl,sw,sl})=>{
+          const r=winRate(w,l),fr=winRate(fw,fl),sr=winRate(sw,sl);
+          return `<tr><td>${cls}<span class="badge badge-arch" style="margin-left:6px">${sub}</span></td>
+            <td><div class="rate-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:${r??0}%"></div></div><span class="rate-val">${r!==null?r+'%':'—'}</span></div></td>
+            <td style="color:var(--blue);font-weight:600">${fr!==null?fr+'%':'—'}</td>
+            <td style="color:var(--orange);font-weight:600">${sr!==null?sr+'%':'—'}</td>
+            <td style="color:var(--text2)">${w+l}</td></tr>`;
+        }).join('')}</tbody></table>`;
+
+    const rateHtml = !rs.length ? '<div class="no-data">レート記録がまだありません（記録時にレートを選択してください）</div>'
+      : `<table><thead><tr><th>レート</th><th>勝率</th><th>勝利</th><th>敗北</th><th>合計</th></tr></thead><tbody>
+        ${rs.map(({rate,w,l})=>{
           const r=winRate(w,l);
-          return `<tr><td><span class="badge badge-rank">${rank}</span></td>
+          return `<tr><td><span class="badge badge-rank">${rate}</span></td>
             <td><div class="rate-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:${r??0}%"></div></div><span class="rate-val">${r!==null?r+'%':'—'}</span></div></td>
             <td style="color:var(--green);font-weight:600">${w}</td>
             <td style="color:var(--red);font-weight:600">${l}</td>
@@ -710,8 +919,9 @@ function renderDecks() {
           return `<div class="hist-item">
             <span class="badge ${h.result==='win'?'badge-win':'badge-loss'}">${h.result==='win'?'勝':'負'}</span>
             <span class="badge ${h.turn==='first'?'badge-first':'badge-second'}">${h.turn==='first'?'先攻':'後攻'}</span>
-            ${h.rank?`<span class="badge badge-rank">${h.rank}</span>`:''}
             <span style="color:var(--text)">${h.cls}</span>
+            ${h.sub?`<span class="badge badge-arch">${h.sub}</span>`:''}
+            ${h.rate?`<span class="badge badge-rank">${h.rate}</span>`:(h.rank?`<span class="badge badge-rank">${h.rank}</span>`:'')}
             <span class="hist-time">${h.date} ${h.time}</span>
             <button class="btn-del" style="font-size:12px;padding:2px 5px" onclick="deleteRecord(${deck.id},${idx})" title="削除">✕</button>
             ${h.memo?`<div class="hist-memo">💬 ${h.memo}</div>`:''}
@@ -719,8 +929,9 @@ function renderDecks() {
         }).join('');
 
     const tabContent = tab==='class' ? `<div class="tab-content">${classHtml}</div>`
-      : tab==='rank' ? `<div class="tab-content">${rankHtml}</div>`
-      : tab==='graph' ? `<div class="tab-content">${makeGraph(deck)}</div>`
+      : tab==='arch' ? `<div class="tab-content">${archHtml}</div>`
+      : tab==='rate' ? `<div class="tab-content">${rateHtml}</div>`
+      : tab==='trend' ? `<div class="tab-content">${makeTrend(deck)}</div>`
       : tab==='history' ? `<div class="tab-content">${histHtml}</div>` : '';
 
     return `<div class="deck-card">
@@ -742,10 +953,11 @@ function renderDecks() {
             <button id="turn-first-${deck.id}" class="turn-btn${turn==='first'?' active-first':''}" onclick="setTurn(${deck.id},'first')">🔵 先攻</button>
             <button id="turn-second-${deck.id}" class="turn-btn${turn==='second'?' active-second':''}" onclick="setTurn(${deck.id},'second')">🟠 後攻</button>
           </div>
-          <select id="cls-${deck.id}">${opts}</select>
-          <select id="rank-${deck.id}">${rankOpts}</select>
+          <select id="cls-${deck.id}" onchange="syncArchOptions(${deck.id})">${opts}</select>
+          <select id="arch-${deck.id}">${archOptsInit}</select>
         </div>
         <div class="record-row">
+          <select class="rate-select" id="rate-${deck.id}"><option value="">レート（任意）</option>${RATES.map(r=>`<option value="${r}">${r}</option>`).join('')}</select>
           <input type="text" class="memo-input" id="memo-${deck.id}" placeholder="メモ（任意・最大50文字）" maxlength="50">
           <button class="btn-win" onclick="record(${deck.id},'win')">勝ち ✓</button>
           <button class="btn-loss" onclick="record(${deck.id},'loss')">負け ✗</button>
@@ -753,17 +965,22 @@ function renderDecks() {
       </div>
       <div class="tabs">
         <button class="tab ${tab==='class'?'active':''}" onclick="setTab(${deck.id},'class')">クラス別</button>
-        <button class="tab ${tab==='rank'?'active':''}" onclick="setTab(${deck.id},'rank')">ランク別</button>
-        <button class="tab ${tab==='graph'?'active':''}" onclick="setTab(${deck.id},'graph')">推移</button>
+        <button class="tab ${tab==='arch'?'active':''}" onclick="setTab(${deck.id},'arch')">型別</button>
+        <button class="tab ${tab==='rate'?'active':''}" onclick="setTab(${deck.id},'rate')">レート別</button>
+        <button class="tab ${tab==='trend'?'active':''}" onclick="setTab(${deck.id},'trend')">推移</button>
         <button class="tab ${tab==='history'?'active':''}" onclick="setTab(${deck.id},'history')">履歴</button>
       </div>
       ${tabContent}
     </div>`;
   }).join('');
+
+  // After render, sync archetype options for each deck (in case class selector defaults differ)
+  for (const deck of decks) syncArchOptions(deck.id);
 }
 
 document.getElementById('deckInput').addEventListener('keydown', e => { if (e.key==='Enter') addDeck(); });
 document.getElementById('classInput').addEventListener('keydown', e => { if (e.key==='Enter') addClass(); });
+document.getElementById('archInput').addEventListener('keydown', e => { if (e.key==='Enter') addArchetype(); });
 
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault(); deferredPrompt = e;
@@ -779,7 +996,7 @@ document.getElementById('installBtn').addEventListener('click', async () => {
 window.addEventListener('appinstalled', () => { document.getElementById('installBanner').style.display = 'none'; });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
 
-load(); syncThemeUI(); renderClasses(); renderDecks();
+load(); syncThemeUI(); renderClasses(); renderArchMgmt(); renderDecks();
 </script>
 </body>
 </html>
